@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_27_163830) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_29_010217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_163830) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "driver_id"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -31,6 +32,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_163830) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "pickup_location"
     t.string "dropoff_location"
@@ -38,6 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_163830) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pickup_location_id"
+    t.integer "dropoff_location_id"
   end
 
   create_table "routes", force: :cascade do |t|
